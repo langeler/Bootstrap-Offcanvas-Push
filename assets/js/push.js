@@ -60,7 +60,7 @@
 		keyboard		: true, // Default value is true
 
 		// Enable or disable a modal like overlay (outside the element).
-		overlay			: false, // Default value is true
+		overlay			: true, // Default value is true
 
 		// Canvas element (outside togglable sidebars).
 		canvas			: '#canvas' // Default value is '#wrapper'
@@ -135,11 +135,15 @@
 	// Function to remove an overlay outside the element
 	Push.prototype.disableOverlay = function () {
 
+		// Remove it (later)
+		$(".modal-backdrop").remove();
 	}
 
 	// Function to add an overlay outside the element
 	Push.prototype.enableOverlay = function () {
 
+		// Show the backdrop
+		$('<div class="modal-backdrop in"></div>').appendTo(this.options.canvas);
 	}
 
 	// Function to open an element
