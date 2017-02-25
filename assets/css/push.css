@@ -1,0 +1,156 @@
+.canvas {
+	width: 100%;
+	min-height: 110vh;
+	color:#ccc;
+	background-color: #222;
+}
+
+.canvas > .jumbotron {
+	color:#fff;
+	padding-top:100px;
+	padding-bottom:100px;
+	background-color:#333;
+}
+
+.push-sidebar {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 0;
+	width: 250px;
+	min-height: 100vh;
+	padding-top: 30px;
+	padding-left:5px;
+	padding-right:5px;
+	background-color: #f2f2f2;
+	-moz-box-shadow:inset 0px 2px 5px rgba(0,0,0,1);
+	-webkit-box-shadow:inset 0px 2px 5px rgba(0,0,0,1);
+	box-shadow:inset 0px 2px 5px rgba(0,0,0,1);
+}
+.push-sidebar-right {
+	left: auto;
+	right: 0;
+}
+
+/* If you prefer not to have a top navbar, use the (.push-toggle) class. To position individual sidebar toggelable buttons */
+.push-toggle {
+	position: fixed;
+	top: 20px;
+	left: 20px;
+	z-index: 100;
+	margin-right: 10px;
+	padding: 4px 13px;
+	color:#fff;
+	font-size:18px;
+	background-color: transparent;
+	background-image: none;
+	border: 1px solid #fff;
+	border-radius: 4px;
+}
+.push-toggle:hover,
+.push-toggle:focus {
+	color: #ffffff;
+	text-decoration: none;
+	border: 1px solid #fff;
+	background-color: rgba(255, 255, 255, 0.1);
+}
+.push-toggle-right {
+	left: auto;
+	right: 20px;
+}
+
+/* Custom push navigation style */
+.push-sidebar,
+.push-sidebar-right {
+	margin-bottom: 10px;
+}
+
+.push-sidebar .dropdown-menu,
+.push-sidebar-right .dropdown-menu {
+	position: static;
+	margin: 0;
+	padding-top: 0;
+	float: none;
+	border: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border-radius: 0;
+}
+
+.sidebar {
+	padding-bottom: 20px;
+}
+.sidebar-header {
+	position: relative;
+	padding-bottom: 20px;
+}
+.sidebar-header:before,
+.sidebar-header:after {
+	content: " ";
+	display: table;
+}
+.sidebar-header:after {
+	clear: both;
+}
+.sidebar-header:before,
+.sidebar-header:after {
+	content: " ";
+	display: table;
+}
+.sidebar-header:after {
+	clear: both;
+}
+.sidebar-brand {
+	float: left;
+	font-size: 18px;
+	line-height: 1;
+	color: #555555;
+}
+.sidebar-brand > img {
+	height: 40px;
+}
+@media (min-width: 768px) {
+	.sidebar-brand > img {
+		height: 60px;
+	}
+}
+.sidebar-brand:hover {
+	color: #222222;
+	text-decoration: none;
+}
+.sidebar-brand-icon {
+	font-size: 40px;
+}
+.sidebar > .nav-header {
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-bottom: 5px;
+	font-size: 85%;
+	font-weight: normal;
+	letter-spacing: 1px;
+	color: #aeaeae;
+	text-transform: uppercase;
+}
+.sidebar > li + .nav-header {
+	margin-top: 20px;
+}
+.sidebar-form {
+	position: relative;
+}
+.sidebar-form .form-control {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.sidebar-form .btn-link {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 9px 10px;
+	color: #959595;
+	border: 0;
+	line-height: 0;
+}
+.sidebar-form .btn-link .glyphicon {
+	vertical-align: text-top;
+}

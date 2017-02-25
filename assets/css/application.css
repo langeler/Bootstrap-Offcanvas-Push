@@ -1,0 +1,40 @@
+.app-navbar {
+	border:none;
+	font-weight: 400;
+	background-color: transparent;
+	-webkit-font-smoothing: antialiased;
+}
+
+.app-navbar .btn {
+	margin:10px;
+}
+
+.app-navbar .btn:hover,
+.app-navbar .btn:focus {
+  color: #fff;
+  -webkit-box-shadow: 0px 1px 3px rgba(0,0,0,1);
+	 -moz-box-shadow: 0px 1px 3px rgba(0,0,0,1);
+	   	  box-shadow: 0px 1px 3px rgba(0,0,0,1);
+}
+
+.rotateY {
+	transform: rotate(180deg);
+}
+
+#to-top {
+	display: none;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	z-index: 999;
+}
+#to-top .btn {
+	margin:10px;
+}
+
+hr.custom-divider {
+	border: 0;
+    height: 2px;
+    margin: 50px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
