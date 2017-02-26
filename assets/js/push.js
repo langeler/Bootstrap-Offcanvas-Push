@@ -20,11 +20,11 @@
 +function ($) {
 	'use strict';
 
-	// PUSH CLASS DEFINITION
-	// ================================
+	// PUSH PLUGIN CLASS DEFINITION
+	// ============================
 
-	// DataAPI, used to indetify inilitizing of the Push plugin
-	var dataApi = '[data-toggle="push"]' // Default value is '[data-toggle="push"]'
+	// variable used to indetify inilitizing of the Push plugin
+	var pushDataApi = '[data-toggle="push"]' // Default value is '[data-toggle="push"]'
 
 	// Main function to get off canvas element and options
 	var Push = function (element, options) {
@@ -38,10 +38,10 @@
 	// Transition duration
 	Push.TRANSITION_DURATION = 150
 
-	// Default settings
+	// Default PUSH plugin settings
 	Push.DEFAULTS = {
 
-		// Easing methos, used for the element when it (opens / closes).
+		// Easing method, used for the element when it (opens / closes).
 		easing			: 'cubic-bezier(.2,.7,.5,1)', // Default value is 'cubic-bezier(.2,.7,.5,1)'
 
 		// Duration for an element to (open / close)
@@ -66,22 +66,24 @@
 		canvas			: '#canvas' // Default value is '#wrapper'
 	}
 
-	// Return element if it's open
+	// Function to check if the canvas element is open
 	Push.prototype.isOpen = function () {
+
+		// Return if the canvas element has the isOpen class
 		return $(this.options.canvas).hasClass('isOpen')
 	}
 
 	// Function to toggle (open or close)
 	Push.prototype.toggle = function () {
 
-		// If element is already open
+		// If canvas is already open
 		if (this.isOpen()) {
-			this.close() // close element
+			this.close() // close canvas and hide element
 		}
 
-		// If element isn't open
+		// If canvas isn't open
 		else {
-			this.open() // open element
+			this.open() // open canvas and reveal element
 		}
 	}
 
@@ -91,17 +93,19 @@
 		// Filter all elements with position: fixed
 		var fixed_elements = $('*').filter(function() {
 			return $(this).css("position") === 'fixed';
-		}).not(this.element) // Skip toggelable element
+		}).not(this.element) // Skip sidebar element
 
-		// Return all fixed elements, except the toggelable element
+		// Return all fixed elements, except the sidebar element
 		return fixed_elements
     }
 
 	// Function to disable scrolling outside an element
 	Push.prototype.disableScrolling = function () {
 
+		// Add overflow hidden to body, to prevent scrolling
 		$(document.body).css('overflow', 'hidden')
 
+		// On touch devices, overflow: hidden, is ignored. So we specefiy another prevention for touch devices.
 		if ('ontouchstart' in document.documentElement) {
 			$(document).on('touchmove.bs.push', function (e) {
 				e.preventDefault()
@@ -112,8 +116,10 @@
 	// Function to enable scrolling outside an element
 	Push.prototype.enableScrolling = function () {
 
+		// Override the previously added overflow hiddien. To active normal scroll behaviour
 		$(document.body).css('overflow', 'auto')
 
+		// Turn off the anti touch functionality for touch devices.
 		if ('ontouchstart' in document.documentElement) {
 			$(document).off('touchmove.bs.push')
 		}
@@ -121,35 +127,47 @@
 
 	// Function to disable key press to close an element
 	Push.prototype.disableKeyboard = function () {
+
+		// Turn off the previously added keybind to close an open sidebar
 		$(window).off('keydown.bs.push')
 	}
 
 	// Function to enable key press to close an element
 	Push.prototype.enableKeyboard = function () {
 
+		// Add functionality to close a sidebar, with a specefied keybind
 		$(window).one('keydown.bs.push', $.proxy(function (e) {
-			e.which == 27 && this.close()
+			e.which == 27 && this.close() // default value is: 27 (ESC key)
 		}, this))
 	}
 
 	// Function to remove an overlay outside the element
 	Push.prototype.disableOverlay = function () {
 
-		// Remove it (later)
-		$(".modal-backdrop").remove();
+		// Prepare the overlay variable
+		var $overlay = $(".modal-backdrop");
+
+		// Remove previously added overlay effect, from the canvas element
+		$overlay.remove();
 	}
 
 	// Function to add an overlay outside the element
 	Push.prototype.enableOverlay = function () {
 
-		// Show the backdrop
-		$('<div class="modal-backdrop in"></div>').appendTo(this.options.canvas);
+		// Prepare the overlay variable
+		var $overlay = $('<div class="modal-backdrop in"></div>');
+
+		// Add an overlay effect to the canvas element
+		$overlay.appendTo(this.options.canvas);
 	}
 
 	// Function to open an element
 	Push.prototype.open = function () {
 
+		// Set the (that) variable, for easy access, and to avoid conflict.
 		var that = this
+
+		// Get all fixed elements, except the sidebar elements
 		var fixedElements = this.findFixed()
 
 		// If options is set to disable scrolling, disable it on opening
@@ -161,31 +179,36 @@
 		// If options is set to activate overlay, activate it on opening
 		if (this.options.overlay) this.enableOverlay()
 
+		// Reveal the toggled sidebar
 		$(this.element).removeClass('hidden')
 
+		// Open the canvas elemen
 		$(this.options.canvas)
-		.on('click.bs.push', $.proxy(this.close, this))
-		.trigger('open.bs.push')
-		.addClass('isOpen')
+		.on('click.bs.push', $.proxy(this.close, this)) // If the user clicks on the canvas element, call the close functionality.
+		.trigger('open.bs.push') // Trigger the open sequence
+		.addClass('isOpen') // adds the isOpen class, to identify that the canvas is open
 
-		// If browser doesn't support CSS3 transitions
+		// If browser doesn't support CSS3 transitions & translations
 		if (!$.support.transition) {
 
+			// Move all specefied fixed elements, when canvas is open
 			fixedElements
 			.css({
 				'left': this.options.distance + 'px',
 				'position': 'relative'
 			})
 
+			// Move the actual canvas
 			$(this.options.canvas)
 			.css({
 				'left': this.options.distance + 'px',
 				'position': 'relative'
 			})
-			.trigger('opened.bs.push')
+			.trigger('opened.bs.push') // Indicate that the opening sequence is complete
 			return
 		}
 
+		// Prepare the CSS3 transitioning of the all fixed elements, except for the sidebars
 		fixedElements
 		.css({
 			'-webkit-transition': '-webkit-transform ' + this.options.duration + 'ms ' + this.options.easing,
@@ -193,6 +216,7 @@
 					'transition': 'transform ' + this.options.duration + 'ms ' + this.options.easing
 		})
 
+		// Prepare the CSS3 transitioning of the canvas element
 		$(this.options.canvas)
 		.css({
 			'-webkit-transition': '-webkit-transform ' + this.options.duration + 'ms ' + this.options.easing,
@@ -202,6 +226,7 @@
 
 		this.options.canvas.offsetWidth // Force reflow
 
+		// Move all specefied fixed elements, when the canvas opening sequence is initilised
 		fixedElements
 		.css({
 			'-webkit-transform': 'translateX(' + this.options.distance + 'px)',
@@ -209,6 +234,7 @@
 					'transform': 'translateX(' + this.options.distance + 'px)'
 		})
 
+		// Move the actual canvas element, when the opening sequence is initialised
 		$(this.options.canvas)
 		.css({
 			'-webkit-transform': 'translateX(' + this.options.distance + 'px)',
@@ -216,15 +242,18 @@
 					'transform': 'translateX(' + this.options.distance + 'px)'
 		})
 		.one('bsTransitionEnd', function () {
-			$(that.options.canvas).trigger('opened.bs.push')
+			$(that.options.canvas).trigger('opened.bs.push') // Indicate that the opening sequence is complete
 		})
-		.emulateTransitionEnd(this.options.duration)
+		.emulateTransitionEnd(this.options.duration) // Emulate the ending prosedure of the canvas opening
 	}
 
 	// Function to close an element
 	Push.prototype.close = function () {
 
+		// Set the (that) variable, for easy access, and to avoid conflict.
 		var that = this
+
+		// Get all fixed elements, except the sidebar elements
 		var fixedElements = this.findFixed()
 
 		// If options is set to enable keyboard, disable it on closing
@@ -236,10 +265,13 @@
 		// If options is set to disable scrolling, enable it on clsoing
 		if (this.options.antiScroll) this.enableScrolling()
 
+		// Function to finilize the closing prosedure
 		function complete () {
 
+			// Hide the toggled sidebar
 			$(that.element).addClass('hidden')
 
+			// Reset the CSS3 transitioning and translation, of the all fixed elements back to default.
 			fixedElements
 			.css({
 				'-webkit-transition': '',
@@ -250,8 +282,9 @@
 						'transform': ''
 			})
 
+			// Reset the CSS3 transitioning and translation, of the canvas element back to default.
 			$(that.options.canvas)
-			.removeClass('isOpen')
+			.removeClass('isOpen') // remove the isOpen class, to identify that the canvas is closed
 			.css({
 				'-webkit-transition': '',
 					'-ms-transition': '',
@@ -260,29 +293,33 @@
 					'-ms-transform': '',
 						'transform': ''
 			})
-			.trigger('closed.bs.push')
+			.trigger('closed.bs.push') // Indicate that the closing sequence is complete
 		}
 
-		// If browser doesn't support CSS3 transitions
+		// If browser doesn't support CSS3 transitions & translations
 		if (!$.support.transition) {
 
+			// Move back all specefied fixed elements to default.
 			fixedElements
 			.css({
 				'left': '',
 				'position': ''
 			})
 
+			// Move back the canvas element to default.
 			$(this.options.canvas)
-			.trigger('close.bs.push')
+			.trigger('close.bs.push') // Trigger the close sequence
 			.css({
 				'left': '',
 				'position': ''
 			})
-			.off('click.bs.push')
+			.off('click.bs.push') // Turn off the click indicator for the canvas element
 
+			// Initilise the final closing functionality
 			return complete()
 		}
 
+		// Remove the CSS3 trasform values for all fixed elements
 		fixedElements
 		.css({
 			'-webkit-transform': 'none',
@@ -290,38 +327,49 @@
 					'transform': 'none'
 		})
 
+		// Remove the CSS3 transform values for the canvas element
 		$(this.options.canvas)
-		.trigger('close.bs.push')
-		.off('click.bs.push')
+		.trigger('close.bs.push') // Trigger the close sequence
+		.off('click.bs.push') // Turn off the click indicator for the canvas element
 		.css({
 			'-webkit-transform': 'none',
 				'-ms-transform': 'none',
 					'transform': 'none'
 		})
-		.one('bsTransitionEnd', complete)
-		.emulateTransitionEnd(this.options.duration)
+		.one('bsTransitionEnd', complete) // // Initilize the complete function, to finilise the closing
+		.emulateTransitionEnd(this.options.duration) // Emulate the ending prosedure of the canvas closing
 	}
 
 	// PUSH PLUGIN DEFINITION
-	// ==========================
+	// ======================
 
+	// Function to initlise the push Plugin
 	function Plugin(option) {
 
+		// Begin initilising of the push plugin, for every indicator clicked
 		return this.each(function () {
 
+			// Prepare a variable, containing the designated element
 			var $this		= $(this)
+
+			// Prepare a variable, containing the data-attributes
 			var data		= $this.data('bs.push')
+
+			// Prepare the plugin options
 			var options		= $.extend(
 				{
 					// extentions...
 				},
-				Push.DEFAULTS,
-				$this.data(),
-				typeof option == 'object' && option
+				Push.DEFAULTS, // Initilise default plugin values
+				$this.data(), // Get the extending options from the plugin indicator
+				typeof option == 'object' && option // Setup an object with the designated options
 			)
 
+			// If the push indicatore doesn't contain any data atributes. Use the default values
 			if (!data) $this.data('bs.push', (data = new Push(this, options)))
-			if (typeof option == 'string') data[option]()
+
+			// If the push indicator has a data attribute, containing a string
+			if (typeof option == 'string') data[option]() // Setup the option
 		})
 	}
 
@@ -330,8 +378,8 @@
 	$.fn.push				= Plugin
 	$.fn.push.Constructor	= Push
 
-	// PUSH NO CONFLICT
-	// ====================
+	// PUSH AVOID CONFLICT
+	// ===================
 
 	$.fn.push.noConflict = function () {
 
@@ -341,17 +389,23 @@
 
 
 	// PUSH DATA-API
-	// =================
+	// =============
 
-	$(document).on('click', dataApi, function () {
+	// When clicked on a push data API indicator, initilise the plugin
+	$(document).on('click', pushDataApi, function () {
 
+		// Get all the data options
 		var options = $(this).data()
+
+		// Get the designated data-target (sidebar element)
 		var $target = $(this.getAttribute('data-target'))
 
+		// If no designated data-target is spcefied, use default value
 		if (!$target.data('bs.push')) {
-			$target.push(options)
+			$target.push(options) // Get all the other data options
 		}
 
+		// Toggle the designated data-target (sidebar	)
 		$target.push('toggle')
 	})
 }(jQuery);

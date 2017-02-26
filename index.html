@@ -47,17 +47,17 @@
 		<!-- Main links -->
 		<li class="active">
 			<a href="./.">
-				Bold
+				Home
 			</a>
 		</li>
 		<li>
 			<a href="./.">
-				Startup
+				About
 			</a>
 		</li>
 		<li>
 			<a href="./.">
-				Minimal
+				Contact
 			</a>
 		</li>
 
@@ -126,17 +126,17 @@
 		<!-- Main links -->
 		<li class="active">
 			<a href="./.">
-				Bold
+				Home
 			</a>
 		</li>
 		<li>
 			<a href="./.">
-				Startup
+				About
 			</a>
 		</li>
 		<li>
 			<a href="./.">
-				Minimal
+				Contact
 			</a>
 		</li>
 
@@ -192,19 +192,14 @@
 </nav>
 
 <!-- Top navigation -->
-<nav class="navbar navbar-inverse navbar-fixed-top app-navbar">
+<nav class="navbar navbar-default navbar-fixed-top app-navbar">
 
 	<button type="button" class="btn btn-default pull-left" data-toggle="push" data-target="#sidebar-left" data-distance="250" title="Open left navigation">
 		<span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-		<span class="hidden-xs">
-			Left
-		</span>
 	</button>
 
 	<button type="button" class="btn btn-default pull-right" data-toggle="push" data-target="#sidebar-right" data-distance="-250" title="Open right navigation">
 		<span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-		<span class="hidden-xs">
-			Right
 		</span>
 	</button>
 </nav>
@@ -216,67 +211,237 @@
 	<header class="jumbotron" id="top">
 		<div class="container">
 			<h1>
-				<span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
+				<span class="glyphicon glyphicon-move" aria-hidden="true"></span>
 				Push!
 			</h1>
 
 			<p>
-This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.
+Responsive offcanvas plugin built mainly for Bootstrap 3. The plugin utilises bootstrap’s developer friendly, native data api style. Optimised for cross browser compatibility, and touch supported devices.
 			</p>
 		</div>
 	</header>
 
 	<!-- Main content -->
 	<main class="container">
-		<div class="row">
-			<div class="col-md-4">
-				<h2>
-					Heading
-				</h2>
-				<p>
-Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-				</p>
-				<p>
-					<a class="btn btn-primary btn-block" href="#" role="button">
-						View details &raquo;
-					</a>
-				</p>
-			</div>
+				<section class="row">
+					<article class="col-sm-3">
+				 		<ul class="nav nav-pills nav-stacked">
+							<li role="presentation" class="active">
+								<a href="#intro">
+									Intro
+								</a>
+							</li>
+							<li role="presentation">
+								<a href="#usage">
+									Usage
+								</a>
+							</li>
+							<li role="presentation">
+								<a href="#options">
+									Options
+								</a>
+							</li>
+							<li role="presentation">
+								<a href="#methods">
+									Methods
+								</a>
+							</li>
+							<li role="presentation">
+								<a href="#events">
+									Events
+								</a>
+							</li>
+					  	</ul>
+				 	</article>
 
-			<div class="col-md-4">
-				<h2>
-					Heading
-				</h2>
-				<p>
-Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-				</p>
-				<p>
-					<a class="btn btn-primary btn-block" href="#" role="button">
-						View details &raquo;
-					</a>
-				</p>
-			</div>
+					<article class="col-sm-9">
+						<h2 id="transparent-navbar">
+							Live demo
+						</h2>
 
-			<div class="col-md-4">
-				<h2>
-					Heading
-				</h2>
-				<p>
-Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-				</p>
-				<p>
-					<a class="btn btn-primary btn-block" href="#" role="button">
-						View details &raquo;
-					</a>
-				</p>
-			</div>
-		</div> <!-- /row -->
+						<p>
+							A demonstration of the
+							<code class="highlighter-rouge">
+								.push-left
+							</code>
+							attribute.
+						</p>
+						<div class="docs-example" data-example-id="">
+							<button type="button" class="btn btn-default" data-toggle="push" data-target="#sidebar-left" title="Open right navigation">
+								<span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+							</button>
+						</div>
+
+	<div class="highlight">
+<pre><code class="language-html" data-lang="html"><span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"button"</span> <span class="na">class=</span><span class="s">"btn btn-default"</span> <span class="na">data-toggle=</span><span class="s">"push"</span> <span class="na">data-target=</span><span class="s">"#sidebar"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"glyphicon glyphicon-hamburger-menu"</span><span class="nt">&gt;&lt;/span&gt;</span>
+	<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"sr-only"</span><span class="nt">&gt;</span>
+		Toggle navigation
+	<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/button&gt;</span></code></pre>
+	</div>
+
+	<hr />
+
+	<h1 id="usage">
+		Usage
+	</h1>
+
+	<h4>
+		Via data attributes
+	</h4>
+
+	<p>
+Activate any offcanvas element without writing JavaScript. Set <code>data-toggle="push"</code> on a controller element. Such as a button or a link, along with the <code>data-target="#sidebar"</code> attribute.
+	</p>
+
+	<div class="highlight">
+<pre><code class="language-html" data-lang="html"><span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"button"</span> <span class="na">class=</span><span class="s">"btn btn-default"</span> <span class="na">data-toggle=</span><span class="s">"push"</span> <span class="na">data-target=</span><span class="s">"#sidebar"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"glyphicon glyphicon-hamburger-menu"</span><span class="nt">&gt;&lt;/span&gt;</span>
+	<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"sr-only"</span><span class="nt">&gt;</span>
+		Toggle navigation
+	<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/button&gt;</span></code></pre>
+	</div>
+
+	<h1 id="options">
+		Options
+	</h1>
+
+	<p>
+Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code>data-example="x"</code>. Here is a practical demonstration, on how to parse custom options. To your specific element: <code>data-duration="500"</code>
+	</p>
+
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>type</th>
+				<th>default</th>
+				<th>description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>easing</td>
+				<td>string</td>
+				<td>cubic-bezier(.2,.7,.5,1)</td>
+				<td>Easing method, used for the element when it (opens / closes).</td>
+			</tr>
+			<tr>
+				<td>duration</td>
+				<td>integer</td>
+				<td>300</td>
+				<td>Duration for an element to (open / close)</td>
+			</tr>
+			<tr>
+				<td>delay</td>
+				<td>integer</td>
+				<td>0</td>
+				<td>Delay before the element (opens / closes)</td>
+			</tr>
+			<tr>
+				<td>distance</td>
+				<td>integer</td>
+				<td>250</td>
+				<td>Distance an element (opens / closes)</td>
+			</tr>
+			<tr>
+				<td>antiScroll</td>
+				<td>boolean</td>
+				<td>true</td>
+				<td>Enable or disable Anti Scrolling (on the canvas element)</td>
+			</tr>
+			<tr>
+				<td>keyboard</td>
+				<td>boolean</td>
+				<td>true</td>
+				<td>Enable or disable keyboard closing (escape key to close the element)</td>
+			</tr>
+			<tr>
+				<td>overlay</td>
+				<td>boolean</td>
+				<td>true</td>
+				<td>Enable or disable a modal like overlay (outside the element).</td>
+			</tr>
+			<tr>
+				<td>canvas</td>
+				<td>string</td>
+				<td>#canvas</td>
+				<td>The canvas element covers, the pages content (except for the sidebar elements).</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h1 id="methods">
+		Methods
+	</h1>
+
+	<p>
+		This is a section, add any HTML here. Below is an example of table that can be used to describe options.
+	</p>
+
+<pre>
+function foo(){
+  return bar;
+}</pre>
+
+
+	<h1 id="events">
+		Events
+	</h1>
+
+	<p>
+Bootstrap's push class exposes a few events for hooking into offcanvas functionality.
+	</p>
+
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Event type</th>
+				<th>description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>open.bs.push</td>
+				<td>Trigger the open sequence.</td>
+			</tr>
+			<tr>
+				<td>opened.bs.push</td>
+				<td>Indicate that the opening sequence is complete.</td>
+			</tr>
+			<tr>
+				<td>close.bs.push</td>
+				<td>Trigger the close sequence.</td>
+			</tr>
+			<tr>
+				<td>closed.bs.push</td>
+				<td>Indicate that the closing sequence is complete.</td>
+			</tr>
+			<tr>
+				<td>click.bs.push</td>
+				<td>If the user clicks on the canvas element, call the close functionality.</td>
+			</tr>
+			<tr>
+				<td>keydown.bs.push</td>
+				<td>Add or remove keyboard functionality to close a sidebar, with a specified keypress.</td>
+			</tr>
+			<tr>
+				<td>touchmove.bs.push</td>
+				<td>Turn on or off the anti touch functionality for touch devices.</td>
+			</tr>
+		</tbody>
+	</table>
+					</article>
+				</section>
+		</section> <!-- /row -->
 	</main> <!-- /container -->
 
 	<hr class="custom-divider" />
 
 	<!-- Footer content -->
-	<footer class="container">
+	<footer class="container" id="footer">
 		<p>
 			Copyright &copy; 2016
 			<a href="http://www.joakim.langeler.se/" target="_blank">

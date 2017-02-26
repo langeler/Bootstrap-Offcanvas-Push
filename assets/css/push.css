@@ -1,17 +1,3 @@
-.canvas {
-	width: 100%;
-	min-height: 110vh;
-	color:#ccc;
-	background-color: #222;
-}
-
-.canvas > .jumbotron {
-	color:#fff;
-	padding-top:100px;
-	padding-bottom:100px;
-	background-color:#333;
-}
-
 .push-sidebar {
 	position: fixed;
 	top: 0;
