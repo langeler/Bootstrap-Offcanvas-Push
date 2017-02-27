@@ -259,11 +259,11 @@
 		// If options is set to enable keyboard, disable it on closing
 		if (this.options.keyboard) this.disableKeyboard()
 
-		// If options is set to activate overlay, deactivate it on closing
-		if (this.options.overlay) this.disableOverlay()
-
 		// If options is set to disable scrolling, enable it on clsoing
 		if (this.options.antiScroll) this.enableScrolling()
+
+		// If options is set to activate overlay, deactivate it on closing
+		if (this.options.overlay) this.disableOverlay()
 
 		// Function to finilize the closing prosedure
 		function complete () {
@@ -307,7 +307,7 @@
 			})
 
 			// Move back the canvas element to default.
-			$(this.options.canvas)
+			$(that.options.canvas)
 			.trigger('close.bs.push') // Trigger the close sequence
 			.css({
 				'left': '',
@@ -328,7 +328,7 @@
 		})
 
 		// Remove the CSS3 transform values for the canvas element
-		$(this.options.canvas)
+		$(that.options.canvas)
 		.trigger('close.bs.push') // Trigger the close sequence
 		.off('click.bs.push') // Turn off the click indicator for the canvas element
 		.css({

@@ -27,18 +27,18 @@
 	z-index: 100;
 	margin-right: 10px;
 	padding: 4px 13px;
-	color:#fff;
+	color:#333;
 	font-size:18px;
 	background-color: transparent;
 	background-image: none;
-	border: 1px solid #fff;
+	border: 1px solid #333;
 	border-radius: 4px;
 }
 .push-toggle:hover,
 .push-toggle:focus {
-	color: #ffffff;
+	color: #000;
 	text-decoration: none;
-	border: 1px solid #fff;
+	border: 1px solid #000;
 	background-color: rgba(255, 255, 255, 0.1);
 }
 .push-toggle-right {
