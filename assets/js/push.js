@@ -176,11 +176,11 @@
 		// If options is set to enable keyboard, enable it on opening
 		if (this.options.keyboard) this.enableKeyboard()
 
-		// Reveal the toggled sidebar
-		$(this.element).removeClass('hidden')
-
 		// If options is set to activate overlay, activate it on opening
 		if (this.options.overlay) this.enableOverlay()
+
+		// Reveal the toggled sidebar
+		$(this.element).removeClass('hidden')
 
 		// Open the canvas elemen
 		$(this.options.canvas)
@@ -259,17 +259,17 @@
 		// If options is set to enable keyboard, disable it on closing
 		if (this.options.keyboard) this.disableKeyboard()
 
-		// If options is set to disable scrolling, enable it on clsoing
-		if (this.options.antiScroll) this.enableScrolling()
-
 		// If options is set to activate overlay, deactivate it on closing
 		if (this.options.overlay) this.disableOverlay()
 
-		// Hide the toggled sidebar
-		$(that.element).addClass('hidden')
+		// If options is set to disable scrolling, enable it on clsoing
+		if (this.options.antiScroll) this.enableScrolling()
 
 		// Function to finilize the closing prosedure
 		function complete () {
+
+			// Hide the toggled sidebar
+			$(that.element).addClass('hidden')
 
 			// Reset the CSS3 transitioning and translation, of the all fixed elements back to default.
 			fixedElements
@@ -307,7 +307,7 @@
 			})
 
 			// Move back the canvas element to default.
-			$(that.options.canvas)
+			$(this.options.canvas)
 			.trigger('close.bs.push') // Trigger the close sequence
 			.css({
 				'left': '',
@@ -328,7 +328,7 @@
 		})
 
 		// Remove the CSS3 transform values for the canvas element
-		$(that.options.canvas)
+		$(this.options.canvas)
 		.trigger('close.bs.push') // Trigger the close sequence
 		.off('click.bs.push') // Turn off the click indicator for the canvas element
 		.css({
@@ -379,7 +379,7 @@
 	$.fn.push.Constructor	= Push
 
 	// PUSH AVOID CONFLICT
-	// ===================
+	// ====================
 
 	$.fn.push.noConflict = function () {
 
