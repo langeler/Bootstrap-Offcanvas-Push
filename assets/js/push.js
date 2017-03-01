@@ -265,11 +265,11 @@
 		// If options is set to activate overlay, deactivate it on closing
 		if (this.options.overlay) this.disableOverlay()
 
+		// Hide the toggled sidebar
+		$(that.element).addClass('hidden')
+
 		// Function to finilize the closing prosedure
 		function complete () {
-
-			// Hide the toggled sidebar
-			$(that.element).addClass('hidden')
 
 			// Reset the CSS3 transitioning and translation, of the all fixed elements back to default.
 			fixedElements
