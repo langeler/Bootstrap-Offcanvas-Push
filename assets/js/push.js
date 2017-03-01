@@ -24,7 +24,7 @@
 	// ============================
 
 	// variable used to indetify inilitizing of the Push plugin
-	var pushDataApi = '[data-toggle="push"]' // Default value is '[data-toggle="push"]'
+	var pushAPI = '[data-toggle="push"]' // Default value is '[data-toggle="push"]'
 
 	// Main function to get off canvas element and options
 	var Push = function (element, options) {
@@ -176,11 +176,11 @@
 		// If options is set to enable keyboard, enable it on opening
 		if (this.options.keyboard) this.enableKeyboard()
 
-		// If options is set to activate overlay, activate it on opening
-		if (this.options.overlay) this.enableOverlay()
-
 		// Reveal the toggled sidebar
 		$(this.element).removeClass('hidden')
+
+		// If options is set to activate overlay, activate it on opening
+		if (this.options.overlay) this.enableOverlay()
 
 		// Open the canvas elemen
 		$(this.options.canvas)
@@ -392,7 +392,7 @@
 	// =============
 
 	// When clicked on a push data API indicator, initilise the plugin
-	$(document).on('click', pushDataApi, function () {
+	$(document).on('click', pushAPI, function () {
 
 		// Get all the data options
 		var options = $(this).data()
