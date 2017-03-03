@@ -1,11 +1,14 @@
 <snippet>
-  <content><![CDATA[
-# ${1:Project Name}
+  <content>
+# Bootstrap Offcanvas Push
 TODO: Write a project description
 ## Installation
 TODO: Describe the installation process
 ## Usage
 TODO: Write usage instructions
+```
+Give an example
+```
 ## Contributing
 1. Fork it!
 2. Create your feature branch: `git checkout -b my-new-feature`
